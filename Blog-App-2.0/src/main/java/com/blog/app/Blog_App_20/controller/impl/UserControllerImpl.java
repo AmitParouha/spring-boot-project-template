@@ -1,6 +1,7 @@
 package com.blog.app.Blog_App_20.controller.impl;
 
 import com.blog.app.Blog_App_20.controller.UserController;
+import com.blog.app.Blog_App_20.dto.ApiResponse;
 import com.blog.app.Blog_App_20.dto.UserDto;
 import com.blog.app.Blog_App_20.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity<Boolean> deleteUser(Integer userId) {
-        return new ResponseEntity<Boolean>(userService.deleteUser(userId), HttpStatus.OK);
+    public ResponseEntity<ApiResponse> deleteUser(Integer userId) {
+        return new ResponseEntity<ApiResponse>(new ApiResponse("User deleted successfully", "success", HttpStatus.OK.value()+""), HttpStatus.OK);
     }
 }

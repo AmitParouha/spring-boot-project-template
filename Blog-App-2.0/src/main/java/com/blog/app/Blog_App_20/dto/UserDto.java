@@ -1,12 +1,34 @@
 package com.blog.app.Blog_App_20.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class UserDto {
     private Integer id;
+
+    @NotBlank(message = "Username cannot be blank")
+    @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
     private String username;
+
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Email should be valid")
     private String email;
+
+    @NotBlank(message = "Password cannot be blank")
+    @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&#]).{8,20}$",
+            message = "Password must include an uppercase letter, a lowercase letter, a number, and a special character")
     private String password;
+
+    @NotBlank(message = "Role is required")
+    @Pattern(regexp = "^(USER|ADMIN)$", message = "Role must be either USER or ADMIN")
     private String role;
+
+    @Size(max = 500, message = "About section must be less than 500 characters")
     private String about;
+
     private String image;
     private String token;
 

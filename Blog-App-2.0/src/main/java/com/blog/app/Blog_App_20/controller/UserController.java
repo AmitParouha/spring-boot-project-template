@@ -1,5 +1,6 @@
 package com.blog.app.Blog_App_20.controller;
 
+import com.blog.app.Blog_App_20.dto.ApiResponse;
 import com.blog.app.Blog_App_20.dto.UserDto;
 import com.blog.app.Blog_App_20.service.UserService;
 import jakarta.persistence.Column;
@@ -17,7 +18,7 @@ public interface UserController {
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto user);
 
     @PutMapping("/users/{userId}")
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto user, @PathVariable Integer userId);
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto user, @PathVariable Integer userId);
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Integer userId);
@@ -29,5 +30,5 @@ public interface UserController {
     public ResponseEntity<List<UserDto>> getAllUsers();
 
     @DeleteMapping("/users/{userId}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable Integer userId);
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Integer userId);
 }
